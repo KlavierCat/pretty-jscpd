@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Pretty JSCPD Report - List View</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+    <script src="utils.js"></script>
+    <script src="list.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+  </head>
+  <body onload="list()">
+    <h1>List of Exact Clones in Code Base</h1>
+    <p><a href="./graph.html">Graph View</a></p>
+    <div>
+      <label for="file-input">Please select your JSCPD <strong>JSON</strong> report</label>
+      <input type="file" id="file-input" name="file input" accept=".json">
+      <p>Please be patient while we parse your result...</p>
+    </div>
+    <div id="summary"></div>
+    <div id="dupes"></div>
+  </body>
+</html>

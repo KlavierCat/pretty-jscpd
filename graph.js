@@ -1,119 +1,125 @@
-function getNodes(sortedDupes) {
-    var nodes = {};
+const getNodes = (sortedDupes) => {
+  const nodes = {};
 
-    function addValueToNode(fileName, lines) {
-        nodes[fileName] = nodes[fileName] ? nodes[fileName] + lines : lines;
-    }
+  const addValueToNode = (fileName, lines) => {
+    nodes[fileName] = nodes[fileName] ? nodes[fileName] + lines : lines;
+  }
 
-    for (var i = 0; i < sortedDupes.length; i++) {
-        var dupe = sortedDupes[i];
+  for (let i = 0; i < sortedDupes.length; i += 1) {
+    const dupe = sortedDupes[i];
 
-        addValueToNode(dupe.firstFile.name, dupe.lines);
-        addValueToNode(dupe.secondFile.name, dupe.lines);
-    }
+    addValueToNode(dupe.firstFile.name, dupe.lines);
+    addValueToNode(dupe.secondFile.name, dupe.lines);
+  }
 
-    return nodes;
+  return nodes;
 }
 
-function getEdges(sortedDupes) {
-    var edges = {};
+const getEdges = (dupes) => {
+  const edges = {};
 
-    for (var i = 0; i < sortedDupes.length; i++) {
-        var dupe = sortedDupes[i];
+  for (let i = 0; i < dupes.length; i += 1) {
+    const dupe = dupes[i];
+    const fromFile = dupe.firstFile.name;
+    const toFile = dupe.secondFile.name;
 
-        var fromFile = dupe.firstFile.name;
-        var toFile = dupe.secondFile.name;
-
-        if (!edges[fromFile]) {
-            edges[fromFile] = {};
-        }
-
-        if (!edges[fromFile][toFile]) {
-            edges[fromFile][toFile] = {instances:0, lines:0, tokens:0};
-        }
-
-        edges[fromFile][toFile].instances += 1;
-        edges[fromFile][toFile].lines += dupe.lines;
-        edges[fromFile][toFile].tokens += dupe.tokens;
+    if (!edges[fromFile]) {
+      edges[fromFile] = {};
     }
 
-    return edges;
+    if (!edges[fromFile][toFile]) {
+      edges[fromFile][toFile] = { instances: 0, lines: 0, tokens: 0 };
+    }
+
+    edges[fromFile][toFile].instances += 1;
+    edges[fromFile][toFile].lines += dupe.lines;
+    edges[fromFile][toFile].tokens += dupe.tokens;
+  }
+
+  return edges;
 }
 
-function generateNodesArray(nodesObject) {
-    var nodesArray = [];
+const generateNodesArray = (nodesObject) => {
+  const nodesArray = [];
 
-    for (var node in nodesObject) {
-        if (nodesObject.hasOwnProperty(node)) {
-            nodesArray.push({id:node, value:nodesObject[node], label:node});
-        }
-    }
+  Object.entries(nodesObject).forEach((entry) => {
+    const filePath = entry[0];
+    const dupeCount = entry[1];
+    nodesArray.push({
+      id: filePath,
+      value: dupeCount,
+      label: filePath,
+    });
+  });
 
-    return nodesArray;
+  return nodesArray;
 }
 
-function generateEdgesArray(edgesObject) {
-    var edgesArray = [];
+const generateEdgesArray = (edgesObject) => {
+  const edgesArray = [];
 
-    var instances = 0;
-    var lines = 0;
-    var tokens = 0;
+  let instances = 0;
+  let lines = 0;
+  let tokens = 0;
 
-    for (var fromNode in edgesObject) {
-        if (edgesObject.hasOwnProperty(fromNode)) {
-            for (var toNode in edgesObject[fromNode]) {
-                instances = edgesObject[fromNode][toNode].instances;
-                lines = edgesObject[fromNode][toNode].lines;
-                tokens = edgesObject[fromNode][toNode].tokens;
-                edgesArray.push({from:fromNode, to:toNode, value:lines, title:'duplicated ' + instances + ' times, with ' + lines + ' lines, ' + tokens + ' tokens.'})
-            }
-        }
-    }
+  Object.entries(edgesObject).forEach((dupe) => {
+    const fromNode = dupe[0];
+    const toNodes = dupe[1];
+    Object.entries(toNodes).forEach((node) => {
+      const toNode = node[0];
+      const dupeStats = node[1];
+      instances = dupeStats.instances;
+      lines = dupeStats.lines;
+      tokens = dupeStats.tokens;
+      edgesArray.push({
+        from: fromNode,
+        to: toNode,
+        value: lines,
+        title: `duplicated ${instances} times, with ${lines} lines, ${tokens} tokens.`,
+      });
+    });
+  });
 
-    return edgesArray;
+  return edgesArray;
 }
 
-function draw(report) {
-    var sortedDupesArray = reportObjectBubbleSort(report.duplicates);
+const draw = (report) => {
+  const dupesArray = report.duplicates;
 
-    if (commonFilePathToOmit) {
-        sortedDupesArray = cleanupFilePath(sortedDupesArray, commonFilePathToOmit);
-    }
+  const nodesObject = getNodes(dupesArray);
+  const edgesObject = getEdges(dupesArray);
 
-    var nodesObject = getNodes(sortedDupesArray);
-    var edgesObject = getEdges(sortedDupesArray);
+  const nodes = generateNodesArray(nodesObject);
+  const edges = generateEdgesArray(edgesObject);
 
-    var nodes = generateNodesArray(nodesObject);
-    var edges = generateEdgesArray(edgesObject);
+  const container = document.getElementById('files-relation');
 
-    var container = document.getElementById('files-relation');
+  const data = {
+    nodes,
+    edges,
+  };
 
-    var data = {
-        nodes: nodes,
-        edges: edges
-    };
-
-    var options = {
-        nodes: {
-            shape: 'dot',
-            scaling: {
-                label: {
-                    min:8,
-                    max:20
-                }
-            }
+  const options = {
+    nodes: {
+      shape: 'dot',
+      scaling: {
+        label: {
+          min: 8,
+          max: 20,
         },
-        edges: {
-            scaling: {
-                min: 1,
-                max: 30
-            }
-        }
-    };
+      },
+    },
+    edges: {
+      scaling: {
+        min: 1,
+        max: 30,
+      },
+    },
+  };
 
-    network = new vis.Network(container, data, options);
+  network = new vis.Network(container, data, options);
 }
 
-function main() {
-    loadJSONReport(pathToJSCPDreport, draw);
+const graph = () => {
+  initWithResultProcessor(draw);
 }
