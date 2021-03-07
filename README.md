@@ -1,5 +1,5 @@
 # Pretty JSCPD
-Data visualization for JSCPD report.
+Data visualization for JSCPD report. Site: https://klaviercat.github.io/pretty-jscpd/graph.html
 
 Pretty JSCPD provides 2 different views to help you understand the pattern and relation of duplications in your code base, so that you can see at a glance which area in the code base you should tackle first and will guarantee the maximum results for your efforts in reducing duplication and improving code quality. This applicaiton is especially helpful when you are dealing with a legacy codebase with a huge amount of duplication and you don't know where to start for reducing the huge amount of copy pasted code.
 
@@ -11,5 +11,5 @@ The List View presents a sorted list of duplications found in your code base, st
 
 ## Usage
 1. Run [JSCPD](https://www.npmjs.com/package/jscpd) to produce a JSON format report. It is important that this format has to be JSON.
-2. Go to the pretty-jscpd website and upload your report. All the visualisation and parsing is done in your own browser using JavaScript, your report is not sent anywhere. As you can see this is a front-end only repo and the page is directly deployed to GitHub pages. The report is stored in your browser's local storage for ease of use. If you want to remove this report from local storage, simply run `localStorage.removeItem('pretty-jscpd')` in your browser console.
+2. Go to the [pretty-jscpd website](https://klaviercat.github.io/pretty-jscpd/graph.html) and upload your report. The default view is a Graph view. Click on the link in the page to get to the List View if you so desired. All the visualisation and parsing is done in your own browser using JavaScript, your report is not sent anywhere. As you can see this is a front-end only repo and the page is directly deployed to GitHub pages. The report is stored in your browser's local storage for ease of use. If you want to remove this report from local storage, simply run `localStorage.removeItem('pretty-jscpd')` in your browser console.
 3. Supported browsers: as Babel is not installed yet and some small amount of ES6+ features are used, it won't run on older borwsers or IE. Any normally updated Safari / Chrome / FireFox / Opera etc. should work well.
