@@ -1,7 +1,7 @@
-function getNodes(sortedDupes) {
+const getNodes = (sortedDupes) => {
   const nodes = {};
 
-  function addValueToNode(fileName, lines) {
+  const addValueToNode = (fileName, lines) => {
     nodes[fileName] = nodes[fileName] ? nodes[fileName] + lines : lines;
   }
 
@@ -15,7 +15,7 @@ function getNodes(sortedDupes) {
   return nodes;
 }
 
-function getEdges(dupes) {
+const getEdges = (dupes) => {
   const edges = {};
 
   for (let i = 0; i < dupes.length; i += 1) {
@@ -39,7 +39,7 @@ function getEdges(dupes) {
   return edges;
 }
 
-function generateNodesArray(nodesObject) {
+const generateNodesArray = (nodesObject) => {
   const nodesArray = [];
 
   Object.entries(nodesObject).forEach((entry) => {
@@ -55,7 +55,7 @@ function generateNodesArray(nodesObject) {
   return nodesArray;
 }
 
-function generateEdgesArray(edgesObject) {
+const generateEdgesArray = (edgesObject) => {
   const edgesArray = [];
 
   let instances = 0;
@@ -83,7 +83,7 @@ function generateEdgesArray(edgesObject) {
   return edgesArray;
 }
 
-function draw(report) {
+const draw = (report) => {
   const dupesArray = report.duplicates;
 
   const nodesObject = getNodes(dupesArray);
@@ -120,6 +120,6 @@ function draw(report) {
   network = new vis.Network(container, data, options);
 }
 
-function graph() {
+const graph = () => {
   initWithResultProcessor(draw);
 }

@@ -3,7 +3,7 @@ const sortDuplicatesInDescendingOrder = (dupesArr) => {
   return dupesArr;
 };
 
-function aggregateAllDupesFragments(sortedDupes) {
+const aggregateAllDupesFragments = (sortedDupes) => {
   let aggregatedHTML = '';
   for (let i = 0; i < sortedDupes.length; i += 1) {
     const { firstFile } = sortedDupes[i];
@@ -31,7 +31,7 @@ function aggregateAllDupesFragments(sortedDupes) {
   return aggregatedHTML;
 }
 
-function summarise(stats) {
+const summarise = (stats) => {
   const summaryHTML = `
     <p>
       <strong>${stats.percentage}%</strong> duplication (
@@ -44,7 +44,7 @@ function summarise(stats) {
   return summaryHTML;
 }
 
-function parseReport(report) {
+const parseReport = (report) => {
   const sortedDupesArray = sortDuplicatesInDescendingOrder(report.duplicates);
   const sortedDupesHTML = aggregateAllDupesFragments(sortedDupesArray);
 
@@ -55,11 +55,11 @@ function parseReport(report) {
   summaryNode.innerHTML = summarise(report.statistics.total);
 }
 
-function printReport(report) {
+const printReport = (report) => {
   parseReport(report);
   hljs.highlightAll();
 }
 
-function list() {
+const list = () => {
   initWithResultProcessor(printReport);
 }
