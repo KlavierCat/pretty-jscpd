@@ -1,7 +1,26 @@
 {
   "name": "pretty-jscpd",
   "version": "0.1.0",
-  "private": true,
+  "description": "Understand your duplicated code distribution better by enhacing JSCPD report with data visualization",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KlavierCat/pretty-jscpd.git"
+  },
+  "private": false,
+  "keywords": [
+    "copy-paste detection",
+    "jscpd",
+    "pmd",
+    "data visualisation",
+    "data visualization",
+    "clean code"
+  ],
+  "author": "KlavierCat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KlavierCat/pretty-jscpd/issues"
+  },
+  "homepage": "https://github.com/KlavierCat/pretty-jscpd#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
