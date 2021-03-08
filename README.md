@@ -1,37 +1,34 @@
-# Pretty JSCPD
-Data visualization for JSCPD report. Site: https://klaviercat.github.io/pretty-jscpd/graph.html
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Pretty JSCPD provides 2 different views to help you understand the pattern and relation of duplications in your code base, so that you can see at a glance which area in the code base you should tackle first and will guarantee the maximum results for your efforts in reducing duplication and improving code quality. This application is especially helpful when you are dealing with a legacy codebase with a huge amount of duplications and you don't know where to start for reducing the huge amount of copy pasted code.
+## Getting Started
 
-## Graph View
-The Graph View shows a network of duplicated code, showing how the duplications are connected to each other across files, or within the same file itself (self copy-paste).
+First, run the development server:
 
-![Screenshot 2021-03-07 at 12 50 09](https://user-images.githubusercontent.com/5871704/110244172-677b1780-7f55-11eb-8f36-4f718027f221.png)
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-Each node in the graph represents a file with duplicated code. Each edge linking the nodes represent a copy-paste behaviour between the files. The graph could be zoomed in to view details information about the nodes (the files) and the edges (the links between files). The size of the nodes / edges signify the magnitude of duplication: the bigger the node, the more instances of duplications are detected in the file; the thicker the edge, the more duplications exist between the two nodes (files).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-When clicking or hovering over a node or an edge, more information will be presented regarding the magnitude of the issue.
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-For example, the following file `ReactionsDetailSheet.swift` has been duplicated 10 times, with 182 lines:
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-![Screenshot 2021-03-07 at 12 41 18](https://user-images.githubusercontent.com/5871704/110245946-677f1580-7f5d-11eb-8551-3c0541588c83.png)
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-Between `ReactionsDetailSheet.swift` and `GroupCallMemberSheet.swift` there are 6 duplications, with 167 lines:
+## Learn More
 
-![Screenshot 2021-03-07 at 12 43 14](https://user-images.githubusercontent.com/5871704/110245982-9ac1a480-7f5d-11eb-93dd-4665384e96a7.png)
+To learn more about Next.js, take a look at the following resources:
 
-Sometimes a file also copy-pastes code within itself. You'll see an edge pointing back towards itself in this case. For example:
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-![Screenshot 2021-03-07 at 12 43 54](https://user-images.githubusercontent.com/5871704/110245987-a319df80-7f5d-11eb-8b73-0e4903130438.png)
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+## Deploy on Vercel
 
-## List View
-The List View presents a sorted list of duplications found in your code base, starting from the file with the largest amount of duplication.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-![Screenshot 2021-03-07 at 12 49 45](https://user-images.githubusercontent.com/5871704/110244197-782b8d80-7f55-11eb-8869-fead3118aa05.png)
-
-
-## Usage
-1. Run [JSCPD](https://www.npmjs.com/package/jscpd) to produce a JSON format report. It is important that this format has to be JSON.
-1. Go to the [pretty-jscpd website](https://klaviercat.github.io/pretty-jscpd/graph.html) and upload your report. The default view is a Graph view. Click on the link in the page to get to the List View if you so desired. All the visualisation and parsing is done in your own browser using JavaScript, your report is not sent anywhere. As you can see this is a front-end only repo and the page is directly deployed to GitHub pages. The report is stored in your browser's local storage for ease of use. If you want to remove this report from local storage, simply run `localStorage.removeItem('pretty-jscpd')` in your browser console.
-1. Supported browsers: as Babel is not installed yet and some small amount of ES6+ features are used, it won't run on older borwsers or IE. Any normally updated Safari / Chrome / FireFox / Opera etc. should work well.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
