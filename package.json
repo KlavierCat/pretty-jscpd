@@ -32,14 +32,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm i --package-lock-only && git add package-lock.json && lint-staged"
     }
   },
   "lint-staged": {
     "*.{json,md,html}": [
       "prettier --write"
     ],
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{css,scss}": "stylelint --fix"
   },
   "dependencies": {
