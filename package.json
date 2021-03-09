@@ -26,8 +26,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "lint": "eslint pages --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint --fix pages --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx pages; stylelint \"{styles,public,pages}/**/*.{css,scss}\"",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx pages; stylelint --fix \"{styles,public,pages}/**/*.{css,scss}\"",
     "eslint-check": "eslint-config-prettier pages/index.tsx"
   },
   "dependencies": {
@@ -46,6 +46,11 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "prettier": "^2.2.1",
+    "stylelint": "^13.12.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-prettier": "^1.2.0",
+    "stylelint-scss": "^3.19.0",
     "typescript": "^4.2.3"
   }
 }
