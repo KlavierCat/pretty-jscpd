@@ -9,7 +9,8 @@
   "env": {
     "browser": true,
     "jasmine": true,
-    "jest": true
+    "jest": true,
+    "node": true
   },
   "settings": {
     "react": {
