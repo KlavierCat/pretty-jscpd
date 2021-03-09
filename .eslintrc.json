@@ -1,7 +1,9 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
   ],
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "env": {
@@ -22,5 +24,14 @@
       "modules": true
     }
   },
-  "parser": "@typescript-eslint/parser"
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "complexity": "error",
+    "default-param-last": "error",
+    "eqeqeq": "error",
+    "max-depth": "error",
+    "max-nested-callbacks": "error",
+    "max-statements": "error"
+  }
 }
