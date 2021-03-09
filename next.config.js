@@ -1,8 +1,7 @@
+const path = require('path');
+
 module.exports = {
-  exportTrailingSlahs: true,
-  exportPathMap: () => {
-    return {
-      '/': { page: '/' }
-    };
-  }
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
 };
