@@ -1,9 +1,11 @@
 # Pretty JSCPD
+
 Data visualization for JSCPD report. Site: https://klaviercat.github.io/pretty-jscpd/graph.html
 
 Pretty JSCPD provides 2 different views to help you understand the pattern and relation of duplications in your code base, so that you can see at a glance which area in the code base you should tackle first and will guarantee the maximum results for your efforts in reducing duplication and improving code quality. This application is especially helpful when you are dealing with a legacy codebase with a huge amount of duplications and you don't know where to start for reducing the huge amount of copy pasted code.
 
 ## Graph View
+
 The Graph View shows a network of duplicated code, showing how the duplications are connected to each other across files, or within the same file itself (self copy-paste).
 
 ![Screenshot 2021-03-07 at 12 50 09](https://user-images.githubusercontent.com/5871704/110244172-677b1780-7f55-11eb-8f36-4f718027f221.png)
@@ -24,14 +26,14 @@ Sometimes a file also copy-pastes code within itself. You'll see an edge pointin
 
 ![Screenshot 2021-03-07 at 12 43 54](https://user-images.githubusercontent.com/5871704/110245987-a319df80-7f5d-11eb-8b73-0e4903130438.png)
 
-
 ## List View
+
 The List View presents a sorted list of duplications found in your code base, starting from the file with the largest amount of duplication.
 
 ![Screenshot 2021-03-07 at 12 49 45](https://user-images.githubusercontent.com/5871704/110244197-782b8d80-7f55-11eb-8869-fead3118aa05.png)
 
-
 ## Usage
-1. Run [JSCPD](https://www.npmjs.com/package/jscpd) to produce a JSON format report. It is important that this format has to be JSON.
+
+1. Run [JSCPD](https://www.npmjs.com/package/jscpd) to produce a JSON format report. It is important that this format has to be JSON. [Here](https://gist.github.com/KlavierCat/0b1e3214f8d9ca1b0f4e523b38a3df88) is a large real-life example sample JSCPD JSON report that you can use to test the app out if you don't want to generate your own yet.
 1. Go to the [pretty-jscpd website](https://klaviercat.github.io/pretty-jscpd/graph.html) and upload your report. The default view is a Graph view. Click on the link in the page to get to the List View if you so desired. All the visualisation and parsing is done in your own browser using JavaScript, your report is not sent anywhere. As you can see this is a front-end only repo and the page is directly deployed to GitHub pages. The report is stored in your browser's local storage for ease of use. If you want to remove this report from local storage, simply run `localStorage.removeItem('pretty-jscpd')` in your browser console.
 1. Supported browsers: as Babel is not installed yet and some small amount of ES6+ features are used, it won't run on older borwsers or IE. Any normally updated Safari / Chrome / FireFox / Opera etc. should work well.
