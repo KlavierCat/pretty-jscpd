@@ -1,5 +1,7 @@
 {
   "extends": [
+    "airbnb",
+    "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -27,12 +29,27 @@
   },
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "block-scoped-var": "error",
     "react/react-in-jsx-scope": "off",
     "complexity": "error",
     "default-param-last": "error",
     "eqeqeq": "error",
     "max-depth": "error",
     "max-nested-callbacks": "error",
-    "max-statements": "error"
+    "max-statements": "error",
+    "no-else-return": "error",
+    "no-lonely-if": "error",
+    "no-useless-return": "error",
+    "react/jsx-filename-extension": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "prettier/prettier": [
+      "error",
+      {
+        "bracketSpacing": true,
+        "trailingComma": "all",
+        "singleQuote": true
+      }
+    ]
   }
 }
