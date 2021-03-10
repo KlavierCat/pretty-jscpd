@@ -35,19 +35,16 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm i --package-lock-only && git add package-lock.json && lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*.{json,md,html}": [
       "prettier --write"
     ],
-    "*.{js,jsx,ts,tsx},!codecept.confg.js,!steps.d.ts!steps_file.js": [
-      "eslint --fix"
-    ],
-    "*.{css,scss}": [
-      "stylelint --fix"
-    ]
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{css,scss}": "stylelint --fix",
+    "*.css": "stylelint --fix"
   },
   "dependencies": {
     "next": "10.0.8",
