@@ -26,8 +26,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx pages; stylelint \"{styles,public,pages}/**/*.{css,scss}\"",
-    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx pages; stylelint --fix \"{styles,public,pages}/**/*.{css,scss}\"",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx pages __tests__; stylelint \"{styles,public,pages}/**/*.{css,scss}\"",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx pages __tests__; stylelint --fix \"{styles,public,pages}/**/*.{css,scss}\"",
     "eslint-check": "eslint-config-prettier pages/index.tsx",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
