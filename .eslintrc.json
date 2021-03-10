@@ -5,14 +5,16 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:codeceptjs/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier", "codeceptjs"],
   "env": {
     "browser": true,
     "jasmine": true,
     "jest": true,
-    "node": true
+    "node": true,
+    "codeceptjs/codeceptjs": true
   },
   "settings": {
     "react": {
